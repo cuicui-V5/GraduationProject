@@ -1,7 +1,6 @@
 import { useAppStore } from "@/store/app";
 import { homeStatusType } from "./types";
 import bus from "@/utils/bus";
-import { json } from "stream/consumers";
 const store = useAppStore();
 export const enableWebsocket = () => {
   const ws = new WebSocket("ws://127.0.0.1:1234");

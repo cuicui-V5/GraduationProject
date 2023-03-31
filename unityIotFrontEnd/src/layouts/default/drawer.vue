@@ -3,13 +3,23 @@
     <v-list density="compact" nav>
       <v-list-item
         prepend-icon="mdi-view-dashboard"
-        title="Home"
+        title="概览"
         value="home"
+        @click="
+          $router.push({
+            name: 'home',
+          })
+        "
       ></v-list-item>
       <v-list-item
         prepend-icon="mdi-forum"
-        title="About"
+        title="自动化"
         value="about"
+        @click="
+          $router.push({
+            name: 'auto',
+          })
+        "
       ></v-list-item>
     </v-list>
   </v-navigation-drawer>

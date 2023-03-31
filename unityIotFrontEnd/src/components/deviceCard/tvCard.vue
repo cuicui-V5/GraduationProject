@@ -16,10 +16,11 @@
       <v-row align="center" no-gutters>
         <v-responsive>
           <v-img
-            width="auto"
+            width="100%"
+            height="200"
             aspect-ratio="16/9"
             cover
-            src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
+            :src="coverImg[channel - 1]"
           ></v-img>
         </v-responsive>
       </v-row>
@@ -115,6 +116,11 @@ const props = defineProps<{
 const { device } = toRefs(props);
 const volume = ref(50);
 const channel = ref(1);
+const coverImg = ref([
+  "/tvChannel/c1.jpg",
+  "/tvChannel/c2.jpg",
+  "/tvChannel/c3.jpg",
+]);
 const changeStatus = () => {
   // 切换电源状态的方法
 

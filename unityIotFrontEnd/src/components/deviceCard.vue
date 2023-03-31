@@ -11,6 +11,9 @@
   <template v-if="device.type == 'cam'">
     <camCard :device="device"></camCard>
   </template>
+  <template v-if="device.type == 'sensor'">
+    <sensorCard :device="device"></sensorCard>
+  </template>
 </template>
 
 <script lang="ts">
@@ -25,6 +28,7 @@ import tvCard from "./deviceCard/tvCard.vue";
 import fanCard from "./deviceCard/fanCard.vue";
 import lightCard from "./deviceCard/lightCard.vue";
 import camCard from "./deviceCard/camCard.vue";
+import sensorCard from "./deviceCard/sensorCard.vue";
 
 const props = defineProps<{
   device: Device;

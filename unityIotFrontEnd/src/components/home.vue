@@ -11,12 +11,8 @@
           ></v-alert>
         </v-col>
       </v-row>
-      <v-container
-        class="pa-4"
-        v-for="room in store.homeStatus.rooms"
-        :key="room.name"
-      >
-        <v-row>
+      <v-container v-for="room in store.homeStatus.rooms" :key="room.name">
+        <v-row v-if="room.devices.length > 0">
           <v-col>
             <v-banner
               rounded

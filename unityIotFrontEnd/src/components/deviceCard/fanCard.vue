@@ -56,6 +56,25 @@
           </template>
         </v-slider>
       </v-list-item>
+      <v-list-item v-if="device.value4 != 'yes'">
+        <v-row class="py-4">
+          <v-col cols="4">
+            <v-btn block :active="device.value2 == 0" @click="changeMode(0)"
+              >制冷</v-btn
+            >
+          </v-col>
+          <v-col cols="4">
+            <v-btn block :active="device.value2 == 1" @click="changeMode(1)"
+              >制热</v-btn
+            >
+          </v-col>
+          <v-col cols="4">
+            <v-btn block :active="device.value2 == 2" @click="changeMode(2)"
+              >除湿</v-btn
+            >
+          </v-col>
+        </v-row>
+      </v-list-item>
     </v-card-text>
   </v-card>
 </template>
@@ -96,6 +115,13 @@ const changeSpeed = debounce(() => {
     value: speed.value,
   });
 }, 200);
+const changeMode = (mode: number) => {
+  bus.emit("CtrlMsg", {
+    id: device.value.id,
+    type: 2,
+    value: mode,
+  });
+};
 </script>
 
 <style scoped lang="less">
