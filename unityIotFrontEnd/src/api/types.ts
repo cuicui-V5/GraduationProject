@@ -1,11 +1,15 @@
 export interface homeStatusType {
-  type?: string;
-  rooms?: Room[];
+  type: string;
+  time: number;
+  rooms: Room[];
 }
 
 export interface Room {
   describe: string;
   name: string;
+  temperature: number;
+  humidity: number;
+  pm25: number;
   devices: Device[];
 }
 
