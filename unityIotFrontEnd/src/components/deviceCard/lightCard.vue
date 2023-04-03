@@ -119,6 +119,10 @@ const changeBrightness = debounce(() => {
     value: brightness.value,
   });
 }, 200);
+watch(device, () => {
+  brightness.value = device.value.value;
+  color.value = device.value.value4;
+});
 watch(color, () => {
   changeColor();
 });

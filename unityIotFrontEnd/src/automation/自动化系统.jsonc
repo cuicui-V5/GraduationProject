@@ -1,0 +1,72 @@
+{
+    "triggers": [
+        //多个触发器
+        {
+            "condition": {
+                "mode": "and", // 0 and, 1 or
+                "conditions": [
+                    {
+                        "deviceID": 123,
+                        "type": 0,
+                        /*
+                            0 设备数值比较, 1 与当前时间比较
+                            */
+                        "compare": 0,
+                        /*
+                            0 设备数值与value相等
+                            1 大于
+                            -1 小于
+                            2 当前时间
+                            */
+                        "valueType": 0,
+                        "value": true
+                    },
+                    {
+                        "deviceID": 123,
+                        "type": 0,
+                        /*
+                            0 设备数值比较, 1 与当前时间比较
+                            */
+                        "compare": 0,
+                        /*
+                            0 设备数值与value相等
+                            1 大于
+                            -1 小于
+                            2 当前时间
+                            */
+                        "valueType": 1,
+                        "value": 100
+                    }
+                ]
+            },
+            "actions": [
+                {
+                    "deviceID": 123,
+                    /*
+                        操作类型
+                        0 改变status
+                        1 改value
+                        2 value2
+                        3 value3
+                        4 value4 字符串类型
+                         */
+                    "valueType": 0,
+                    "value": 123
+                },
+                {
+                    "deviceID": 321,
+                    /*
+                        操作类型
+                        0 改变status
+                        1 改value
+                        2 value2
+                        3 value3
+                        4 value4 字符串类型
+                         */
+                    "valueType": 2,
+                    "value": 3
+                }
+            ]
+        }
+    ]
+}

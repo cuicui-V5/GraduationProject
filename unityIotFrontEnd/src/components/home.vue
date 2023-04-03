@@ -12,7 +12,7 @@
         </v-col>
       </v-row>
       <v-row v-if="store.homeStatus.rooms">
-        <v-col cols="8" class="mx-auto">
+        <v-col cols="12" lg="8" class="mx-auto">
           <v-card class="mx-auto" max-height="250">
             <v-card-item title="欢迎回家">
               <template v-slot:subtitle>
@@ -97,13 +97,11 @@
 </template>
 
 <script lang="ts" setup>
-import { enableWebsocket } from "@/api";
 import deviceCard from "./deviceCard.vue";
 import { useAppStore } from "@/store/app";
 import { computed, ref } from "vue";
 import { Ref } from "vue";
 const store = useAppStore();
-enableWebsocket();
 
 const serverStatusText = computed(() => {
   if (store.connectStatus && store.homeStatus.rooms) {

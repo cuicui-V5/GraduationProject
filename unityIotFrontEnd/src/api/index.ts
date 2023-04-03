@@ -1,8 +1,9 @@
 import { useAppStore } from "@/store/app";
 import { homeStatusType } from "./types";
 import bus from "@/utils/bus";
-const store = useAppStore();
 export const enableWebsocket = () => {
+  const store = useAppStore();
+
   const ws = new WebSocket("ws://127.0.0.1:1234");
 
   ws.onopen = function () {

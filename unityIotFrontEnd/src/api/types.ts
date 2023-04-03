@@ -15,7 +15,7 @@ export interface Room {
 
 export interface Device {
   describe: string;
-  type: string;
+  type: "tv" | "fan" | "light" | "cam" | "sensor";
   id: number;
   status: boolean;
   value: number;
