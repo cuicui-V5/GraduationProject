@@ -1,5 +1,5 @@
 <template>
-  <v-card hover elevation="12" rounded>
+  <v-card hover elevation="12" rounded min-height="550">
     <template v-slot:title> {{ trigger.name }} </template>
 
     <template v-slot:subtitle>
@@ -83,8 +83,8 @@
       </v-container>
     </template>
     <v-card-actions>
-      <v-btn>禁用</v-btn>
-      <v-btn>编辑</v-btn>
+      <v-btn @click="$emit('showEditDialog', props.index)">编辑</v-btn>
+      <v-btn color="warning" @click="delRule">删除</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -96,15 +96,28 @@ export default {
 </script>
 <script setup lang="ts">
 import { actionType, conditionType, triggerType } from "@/automation/types";
-import { Stats } from "fs";
+import { useAppStore } from "@/store/app";
 import { computed } from "vue";
 import { toRefs } from "vue";
 import { ref } from "vue";
 
+const store = useAppStore();
 const props = defineProps<{
   trigger: triggerType;
+  index: number;
 }>();
 const { trigger } = toRefs(props);
+
+const delRule = () => {
+  let i = 0;
+  store.automationRules.triggers.forEach((cuTrigger) => {
+    i++;
+    if (cuTrigger.id == trigger.value.id) {
+      store.automationRules.triggers.splice(i - 1, 1);
+    }
+  });
+};
+
 const computeConditionTitle = computed(() => (condition: conditionType) => {
   if (condition.type == 1) {
     const hour = Math.floor((condition.value as number) / 60);

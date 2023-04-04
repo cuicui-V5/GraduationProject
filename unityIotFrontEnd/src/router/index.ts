@@ -11,11 +11,17 @@ const routes = [
         name: "home",
         default: true,
         component: () => import("@/views/Home.vue"),
+        meta: {
+          title: "unityIOT - 智能家居仿真平台",
+        },
       },
       {
         path: "/automation",
         name: "auto",
         component: () => import("@/views/Auto.vue"),
+        meta: {
+          title: "自动化规则 - 唤醒你的家",
+        },
       },
     ],
   },

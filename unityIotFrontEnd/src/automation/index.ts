@@ -94,15 +94,20 @@ const getDeviceInfo = (devId: number) => {
 // 判断条件是否符合的函数
 
 const checkCondition = (condition: conditionType) => {
+  console.log("检查设备状态..");
+
   const store = useAppStore();
 
   // 先获取这个设备
   const currDev = getDeviceInfo(condition.deviceID);
 
   if (!currDev && condition.type == 0) {
+    console.log("没获取到设备 ");
+
     condition.met = false;
     return false;
   }
+  console.log("获取到了设备 ", currDev?.describe);
 
   if (condition.type == 0) {
     // 先判断要比较哪个数字

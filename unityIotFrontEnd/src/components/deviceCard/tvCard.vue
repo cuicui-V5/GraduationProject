@@ -40,6 +40,7 @@
       <div v-if="expand">
         <v-list-item density="compact" title="电源">
           <v-switch
+            color="primary"
             class="ml-4"
             rounded
             :label="device.status ? '开' : '关'"

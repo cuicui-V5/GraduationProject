@@ -9,6 +9,7 @@
     "lint": "eslint . --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@babel/types": "^7.21.4",
     "@mdi/font": "7.0.96",
     "core-js": "^3.8.3",
     "echarts": "^5.4.2",

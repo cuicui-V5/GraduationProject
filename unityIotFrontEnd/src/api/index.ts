@@ -24,7 +24,7 @@ export const enableWebsocket = () => {
 
   ws.onclose = function (evt) {
     console.log("Connection closed.");
-    store.homeStatus = {};
+    store.homeStatus = {} as any;
     store.connectStatus = false;
   };
   bus.on("CtrlMsg", (option) => {

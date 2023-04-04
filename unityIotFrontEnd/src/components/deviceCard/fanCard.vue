@@ -16,6 +16,7 @@
         <v-row>
           <v-col cols="6">
             <v-switch
+              color="primary"
               class="ml-4"
               rounded
               :label="device.status ? '开' : '关'"
