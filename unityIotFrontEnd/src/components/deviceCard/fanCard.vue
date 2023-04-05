@@ -39,6 +39,7 @@
       <v-list-item density="compact" title="风速">
         <v-slider
           class="ml-4"
+          thumb-label
           rounded
           min="0"
           max="100"

@@ -41,6 +41,7 @@
           class="ml-4"
           rounded
           min="0"
+          thumb-label
           max="100"
           step="1"
           v-model="brightness"

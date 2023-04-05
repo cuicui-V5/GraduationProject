@@ -132,7 +132,7 @@ const checkCondition = (condition: conditionType) => {
       default:
         break;
     }
-    console.log("要比较" + compareValue);
+    console.log("比较" + compareValue);
 
     // 根据不同的比较方式进行比较
     switch (condition.compare) {
@@ -182,7 +182,7 @@ const checkCondition = (condition: conditionType) => {
     // 时间比较
     switch (condition.compare) {
       case 0:
-        if (store.homeStatus.time == condition.value) {
+        if (Math.abs(store.homeStatus.time - condition.value) <= 60) {
           condition.met = true;
           return true;
         } else {

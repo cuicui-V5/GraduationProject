@@ -52,6 +52,7 @@
           <v-slider
             class="ml-4"
             rounded
+            thumb-label
             min="0"
             max="100"
             step="1"

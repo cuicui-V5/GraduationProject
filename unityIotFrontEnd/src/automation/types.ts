@@ -33,8 +33,8 @@ export interface conditionType {
               2 范围
               */
   valueType: 0 | 1 | 2 | 3 | 4;
-  value: boolean | number | string;
-  value2: boolean | number | string;
+  value: any;
+  value2: any;
 }
 export interface actionType {
   id: number;
@@ -51,5 +51,5 @@ export interface actionType {
             4 value4 字符串类型
              */
   valueType: 0 | 1 | 2 | 3 | 4;
-  value: boolean | number | string;
+  value: any;
 }

@@ -100,7 +100,6 @@
                             { title: '小于', value: -1 },
                             { title: '等于', value: 0 },
                             { title: '大于', value: 1 },
-                            { title: '范围', value: 2 },
                           ]
                     "
                     item-title="title"
@@ -125,17 +124,109 @@
                   >
                   </v-select>
                 </v-col>
-                <v-col cols="12" sm="2" v-if="condition.valueType != 0">
-                  <v-text-field
-                    label="值"
+                <v-col
+                  cols="12"
+                  sm="2"
+                  v-if="
+                    condition.valueType == 2 && condition.deviceType == 'tv'
+                  "
+                >
+                  <v-select
+                    :items="[
+                      { title: '频道1', value: 1 },
+                      { title: '频道2', value: 2 },
+                      { title: '频道3', value: 3 },
+                    ]"
+                    item-title="title"
+                    item-value="value"
                     v-model.lazy="condition.value"
-                  ></v-text-field>
+                  >
+                  </v-select>
                 </v-col>
-                <v-col cols="12" sm="2" v-if="condition.compare == 2">
-                  <v-text-field
-                    label="值"
+                <v-col
+                  cols="12"
+                  sm="2"
+                  v-if="
+                    condition.valueType == 2 && condition.deviceType == 'fan'
+                  "
+                >
+                  <v-select
+                    :items="[
+                      { title: '制冷', value: 1 },
+                      { title: '制热', value: 2 },
+                      { title: '除湿', value: 3 },
+                    ]"
+                    item-title="title"
+                    item-value="value"
+                    v-model.lazy="condition.value"
+                  >
+                  </v-select>
+                </v-col>
+                <v-col
+                  cols="12"
+                  sm="2"
+                  v-if="
+                    condition.valueType == 4 && condition.deviceType == 'light'
+                  "
+                >
+                  <v-color-picker
+                    width="100%"
+                    mode="rgba"
+                    hide-inputs
+                    show-swatches
+                    v-model="condition.value"
+                  >
+                  </v-color-picker>
+                </v-col>
+
+                <v-col
+                  cols="12"
+                  sm="2"
+                  v-if="
+                    condition.valueType != 0 && condition.deviceType == 'sensor'
+                  "
+                >
+                  <v-slider
+                    class="ml-4"
+                    thumb-label
+                    rounded
+                    min="0"
+                    max="100"
+                    step="0.1"
+                    @update:model-value="updateSensorTempature($event, index)"
+                  ></v-slider>
+                </v-col>
+                <v-col
+                  cols="12"
+                  sm="2"
+                  class="d-flex align-center"
+                  v-else-if="condition.valueType != 0"
+                >
+                  <v-slider
+                    class="ml-4"
+                    thumb-label
+                    rounded
+                    min="0"
+                    max="100"
+                    step="1"
+                    v-model="condition.value"
+                  ></v-slider>
+                </v-col>
+                <v-col
+                  cols="12"
+                  sm="2"
+                  class="d-flex align-center"
+                  v-if="condition.compare == 2"
+                >
+                  <v-slider
+                    thumb-label
+                    class="ml-4"
+                    rounded
+                    min="0"
+                    max="100"
+                    step="1"
                     v-model="condition.value2"
-                  ></v-text-field>
+                  ></v-slider>
                 </v-col>
               </template>
               <template v-if="condition.type == 1">
@@ -145,7 +236,6 @@
                       { title: '小于', value: -1 },
                       { title: '等于', value: 0 },
                       { title: '大于', value: 1 },
-                      { title: '范围', value: 2 },
                     ]"
                     item-title="title"
                     item-value="value"
@@ -273,12 +363,73 @@
                   >
                   </v-select>
                 </v-col>
-                <v-col cols="12" sm="2" v-if="action.valueType != 0">
-                  <v-text-field
-                    label="设为"
+
+                <v-col
+                  cols="12"
+                  sm="2"
+                  v-if="action.valueType == 2 && action.deviceType == 'tv'"
+                >
+                  <v-select
+                    :items="[
+                      { title: '频道1', value: 1 },
+                      { title: '频道2', value: 2 },
+                      { title: '频道3', value: 3 },
+                    ]"
+                    item-title="title"
+                    item-value="value"
                     v-model.lazy="action.value"
-                  ></v-text-field>
+                  >
+                  </v-select>
                 </v-col>
+                <v-col
+                  cols="12"
+                  sm="2"
+                  v-if="action.valueType == 2 && action.deviceType == 'fan'"
+                >
+                  <v-select
+                    :items="[
+                      { title: '制冷', value: 1 },
+                      { title: '制热', value: 2 },
+                      { title: '除湿', value: 3 },
+                    ]"
+                    item-title="title"
+                    item-value="value"
+                    v-model.lazy="action.value"
+                  >
+                  </v-select>
+                </v-col>
+                <v-col
+                  cols="12"
+                  sm="2"
+                  v-if="action.valueType == 4 && action.deviceType == 'light'"
+                >
+                  <v-color-picker
+                    width="100%"
+                    mode="rgba"
+                    hide-inputs
+                    show-swatches
+                    v-model="action.value"
+                  >
+                  </v-color-picker>
+                </v-col>
+
+                <v-col
+                  cols="12"
+                  sm="2"
+                  class="d-flex align-center"
+                  v-if="action.valueType == 1"
+                >
+                  <v-slider
+                    class="ml-4"
+                    rounded
+                    thumb-label
+                    min="0"
+                    max="100"
+                    step="1"
+                    v-model="action.value"
+                  ></v-slider>
+                </v-col>
+
                 <v-col
                   cols="1"
                   v-if="index == trigger.actions.length - 1 && index > 0"
@@ -343,9 +494,8 @@ let trigger = reactive({
 
 watch(props, () => {
   if (props.mode == "edit") {
-    trigger = reactive(
-      store.automationRules.triggers[props.index]
-    ) as triggerType;
+    const storeTrigger = store.automationRules.triggers[props.index];
+    trigger = reactive(storeTrigger) as triggerType;
   } else {
     trigger = reactive({
       name: "新规则",
@@ -482,6 +632,10 @@ const updateTime2 = (str: string, index: number) => {
   const timeArr = str.split(":") as unknown as number[];
 
   trigger.condition.conditions[index].value2 = timeArr[0] * 60 + timeArr[1] * 1;
+};
+
+const updateSensorTempature = (value: number, index: number) => {
+  trigger.condition.conditions[index].value = value * 10;
 };
 
 const emit = defineEmits(["closeDialog"]);
