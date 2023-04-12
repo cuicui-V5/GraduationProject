@@ -3,9 +3,7 @@ import { homeStatusType } from "./types";
 import bus from "@/utils/bus";
 export const enableWebsocket = () => {
   const store = useAppStore();
-
   const ws = new WebSocket("ws://127.0.0.1:1234");
-
   ws.onopen = function () {
     console.log("Connection open ...");
     const msg = {

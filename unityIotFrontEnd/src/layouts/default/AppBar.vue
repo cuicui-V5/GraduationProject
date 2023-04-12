@@ -4,9 +4,9 @@
       <v-app-bar-nav-icon @click="changeDraw"></v-app-bar-nav-icon>
     </template>
     <v-app-bar-title>{{ $route.meta.title }}</v-app-bar-title>
-    <template v-slot:append>
+    <!-- <template v-slot:append>
       <v-btn icon="mdi-dots-vertical"></v-btn>
-    </template>
+    </template> -->
   </v-app-bar>
 </template>
 

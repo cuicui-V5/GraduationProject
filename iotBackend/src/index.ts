@@ -12,7 +12,6 @@ server.on("connection", (socket: ExtendedWebSocket) => {
             code: "200",
         }),
     );
-
     // 从客户端接收消息
     socket.addEventListener("message", ({ data }) => {
         try {
@@ -25,7 +24,6 @@ server.on("connection", (socket: ExtendedWebSocket) => {
             if (response.type == "web") {
                 socket.type = "web";
             }
-
             console.log(response);
             // 收到unity上报的房间信息就把消息转发给每个web类型的客户端
             if (socket.type == "unity" && response.type == "home_status") {

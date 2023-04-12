@@ -1,5 +1,4 @@
 // 规则执行器
-import { Device } from "@/api/types";
 import { conditionType } from "./types";
 import { useAppStore } from "@/store/app";
 import bus from "@/utils/bus";
@@ -41,7 +40,6 @@ export const executeRule = () => {
         const dev = getDeviceInfo(action.deviceID);
         if (!dev) {
           console.log("没这个设备 跳过");
-
           continue;
         }
         let compareValue = dev.status as unknown;
@@ -69,7 +67,6 @@ export const executeRule = () => {
 
           continue;
         }
-
         bus.emit("CtrlMsg", {
           id: action.deviceID,
           type: action.valueType,
@@ -91,8 +88,7 @@ const getDeviceInfo = (devId: number) => {
   }
 };
 
-// 判断条件是否符合的函数
-
+// 条件检查
 const checkCondition = (condition: conditionType) => {
   console.log("检查设备状态..");
 
@@ -133,7 +129,6 @@ const checkCondition = (condition: conditionType) => {
         break;
     }
     console.log("比较" + compareValue);
-
     // 根据不同的比较方式进行比较
     switch (condition.compare) {
       // 相等
