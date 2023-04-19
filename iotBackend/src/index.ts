@@ -2,6 +2,10 @@ interface ExtendedWebSocket extends WebSocket {
     type: "unity" | "web";
 }
 import WebSocket, { WebSocketServer } from "ws";
+import express from "express";
+// import open from "open";
+import c from "child_process";
+
 const server = new WebSocketServer({ port: 1234 });
 
 server.on("connection", (socket: ExtendedWebSocket) => {
@@ -46,3 +50,23 @@ server.on("connection", (socket: ExtendedWebSocket) => {
         }
     });
 });
+const app = express();
+app.use(express.static("public"));
+let PORT = 8960;
+
+try {
+    app.listen(PORT, function () {
+        console.log("Server is listening on port 3000");
+        // open(`http://localhost:${PORT}`);
+        c.exec(`start http://localhost:${PORT}`);
+    });
+} catch (error) {
+    console.log("端口被占用 重新尝试");
+
+    PORT += Math.floor(Math.random() * 1000);
+    app.listen(PORT, function () {
+        console.log("Server is listening on port 3000");
+        // open(`http://localhost:${PORT}`);
+        c.exec(`start http://localhost:${PORT}`);
+    });
+}
